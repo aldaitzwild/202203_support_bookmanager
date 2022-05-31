@@ -10,17 +10,29 @@ class AuthorFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        $author = new Author();
-        $author
-            ->setLastname('Aldaitz')
-            ->setFirstname('Thomas')
-            ->setAge(37)
-            ;
+        $authors = [
+            ['Thomas', 'Aldaitz', 37],
+            ['Frank', 'Herbert', 0],
+            ['Haruki', 'Murakami', 0],
+            ['Alexandre', 'Dumas', 0],
+            ['Victor', 'Hugo', 0],
+        ];
 
-        $manager->persist($author);
+        $i = 1;
+        foreach($authors as $dataAuthor) {
+            $author = new Author();
+            $author
+                ->setLastname($dataAuthor[1])
+                ->setFirstname($dataAuthor[0])
+                ->setAge($dataAuthor[2])
+                ;
+
+            $manager->persist($author);
+            $this->addReference('author_' . $i++, $author);
+        }
 
         $manager->flush();
 
-        $this->addReference('author_1', $author);
+        
     }
 }

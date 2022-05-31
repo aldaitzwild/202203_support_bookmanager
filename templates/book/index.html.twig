@@ -3,26 +3,27 @@
 {% block title %}Liste des livres{% endblock %}
 
 {% block body %}
-<table>
-    <thead>
-        <tr>
-            <th>Titre</th>
-            <th>Auteur</th>
-            <th>Nb de pages</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for book in books %}
+<h1 class="text-center">Liste des livres</h1>    
 
+    <table class="table">
+        <thead>
             <tr>
-                <td>{{book.title}}</td>
-                <td>{{book.author.firstname}} {{book.author.lastname}}</td>
-                <td>{{book.nbOfPages}}</td>
-                <td><a href="book/{{book.id}}">Voir</a></td>
+                <th>Titre</th>
+                <th>Nb de pages</th>
+                <th>Auteur</th>
             </tr>
-            
-        {% endfor %}
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            {% for book in books %}
+                <tr>
+                    <td><a href="/book/{{ book.id }}">{{ book.title }}</a></td>
+                    <td>{{ book.nbOfPages }}</td>
+                    <td>{{ book.author.firstname }} {{ book.author.lastname }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+
+        <p><a href="/refreshColors">Effacer les couleurs moches</a></p>
+        <p><a href="/books/add">Ajouter un nouveau livre</a></p>
+    </table>
 {% endblock %}

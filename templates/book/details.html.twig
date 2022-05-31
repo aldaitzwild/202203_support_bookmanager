@@ -3,11 +3,18 @@
 {% block title %}Détails de {{book.title}} {% endblock %}
 
 {% block body %}
-    <h1>{{book.title}}</h1>
+    <main class="container">
+        <h1 class="text-center mb-5">{{ book.title }}</h1>
 
-    <ul>
-        <li>Description : {{book.description}}</li>
-        <li>Auteur : {{book.author.firstname}} {{book.author.lastname}}</li>
-        <li>Nombre de pages : {{book.nbOfPages}}</li>
-    </ul>
+        <h2>Description : </h2>
+        <p>{{ book.description }}</p>
+
+        <hr class="m-5">
+
+        <h2>Details : </h2>
+        <ul>
+            <li>Nombre de pages : {{book.nbOfPages}}</li>
+            <li>Auteur : {{ book.author.firstname }} {{ book.author.lastname }}</li>
+        </ul>
+    </main>
 {% endblock %}
