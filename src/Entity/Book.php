@@ -66,7 +66,7 @@ class Book
         return $this;
     }
 
-    public function getAuthor(): Author
+    public function getAuthor(): ?Author
     {
         return $this->author;
     }
