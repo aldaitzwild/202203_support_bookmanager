@@ -16,5 +16,22 @@
             <li>Nombre de pages : {{book.nbOfPages}}</li>
             <li>Auteur : {{ book.author.firstname }} {{ book.author.lastname }}</li>
         </ul>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Numéro</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for chapter in book.chapters %}
+                    <tr>
+                        <td>{{ chapter.number }}</td>
+                        <td>{{ chapter.description }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </main>
 {% endblock %}
