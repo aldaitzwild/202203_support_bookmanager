@@ -4,10 +4,21 @@
 
 {% block body %}
     <main class="container">
-        <h1 class="text-center mb-5">{{ book.title }}</h1>
+        <div class="row">
+            <h1 class="text-center mb-5">{{ book.title }}</h1>
+        </div>
 
-        <h2>Description : </h2>
-        <p>{{ book.description }}</p>
+        <div class="row">
+            <h2 class="col-2">Description : </h2>
+            <button class="btn btn-primary col-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                Voir description
+            </button>
+            
+
+            <div class="collapse" id="collapseExample">
+                <p class="col-12 border rounded m-3 p-3">{{ book.description }}</p>
+            </div>
+        </div>
 
         <hr class="m-5">
 

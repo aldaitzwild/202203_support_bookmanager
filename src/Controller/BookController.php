@@ -15,6 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class BookController extends AbstractController
 {
     #[Route('/book', name: 'app_book')]
+    #[Route('/', name: 'app_home')]
     public function index(BookRepository $bookRepository): Response
     {
         $books = $bookRepository->findAll();
