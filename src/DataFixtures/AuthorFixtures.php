@@ -16,6 +16,7 @@ class AuthorFixtures extends Fixture
             ['Haruki', 'Murakami', 0],
             ['Alexandre', 'Dumas', 0],
             ['Victor', 'Hugo', 0],
+            ['Michael', 'Crichton ', 0],
         ];
 
         $i = 1;

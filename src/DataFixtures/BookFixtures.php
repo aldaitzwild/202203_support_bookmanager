@@ -39,6 +39,12 @@ class BookFixtures extends Fixture
             'nbPages' => 728,
             'author' => 5,
         ],
+        [  
+            'title' => 'Jurassic Park', 
+            'description' => 'Un parc à theme presque vegan...', 
+            'nbPages' => 412,
+            'author' => 6,
+        ],
     ];
 
     public function load(ObjectManager $manager): void

@@ -7,6 +7,7 @@ use App\Entity\Book;
 use App\Form\BookType;
 use App\Repository\AuthorRepository;
 use App\Repository\BookRepository;
+use App\Service\OMDBConnector;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -42,8 +43,13 @@ class BookController extends AbstractController
     }
 
     #[Route('/book/{id}', name: 'app_book_details')]
-    public function details(Book $book) {
-        return $this->render('book/details.html.twig', ['book' => $book]);
+    public function details(Book $book, OMDBConnector $omdbConnector) {
+
+        $movie = $omdbConnector->getInfosMovie($book->getTitle());
+        return $this->render('book/details.html.twig', [
+            'book' => $book, 
+            'movie' => $movie
+        ]);
     }
 
     #[Route('/book/author/{lastname}', name: 'app_book_author_list')]
