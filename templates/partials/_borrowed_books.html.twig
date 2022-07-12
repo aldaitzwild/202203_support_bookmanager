@@ -1,0 +1,19 @@
+<div class="p-3 border rounded bg-warning fixed-bottom">
+    <h3>
+        Liste des livres empruntés
+    </h3>
+    <p>
+        <cite>Cliquer pour rendre un livre</cite>
+    </p>
+
+    <div class="d-flex justify-content-center" id="bookListPanel">
+        {% if borrowedBooks is defined  %}
+            {% for book in borrowedBooks %}
+                <span class="border p-2">{{ book.title }}</span>            
+            {% endfor %}
+        {% else %}
+            <b>Aucun livre n'est emprunté.</b>
+        {% endif %}
+        
+    </div>
+</div>

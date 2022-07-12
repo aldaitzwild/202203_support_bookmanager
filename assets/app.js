@@ -11,3 +11,18 @@ require('bootstrap');
 
 // start the Stimulus application
 import './bootstrap';
+
+window.addEventListener('load', () => {
+    const borrowBtn = document.getElementById('borrow_btn');
+    if(borrowBtn) {
+        borrowBtn.addEventListener('click', function () {
+            const bookId = document.getElementById('bookId').value;
+            fetch('/book/borrow/' + bookId)
+            .then(response => response.text())
+            .then((text) => {
+                const bookListPanel = document.getElementById('bookListPanel');
+                bookListPanel.innerHTML += '<span class="border p-2">' + text + '</span>';
+            })
+        });
+    }
+});

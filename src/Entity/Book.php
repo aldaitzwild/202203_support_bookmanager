@@ -30,6 +30,9 @@ class Book
     #[ORM\OneToMany(mappedBy: 'book', targetEntity: Chapter::class, orphanRemoval: true)]
     private $chapters;
 
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    private bool $isBorrowed;
+
     public function __construct()
     {
         $this->chapters = new ArrayCollection();
@@ -114,6 +117,18 @@ class Book
                 $chapter->setBook(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isIsBorrowed(): ?bool
+    {
+        return $this->isBorrowed;
+    }
+
+    public function setIsBorrowed(?bool $isBorrowed): self
+    {
+        $this->isBorrowed = $isBorrowed;
 
         return $this;
     }

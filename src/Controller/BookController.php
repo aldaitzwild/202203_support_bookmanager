@@ -21,8 +21,11 @@ class BookController extends AbstractController
     public function index(BookRepository $bookRepository): Response
     {
         $books = $bookRepository->findAll();
+        $borrowedBooks = $bookRepository->findBy(['isBorrowed' => true]);
+
         return $this->render('book/index.html.twig', [
             'books' => $books,
+            'borrowedBooks' => $borrowedBooks
         ]);
     }
 
@@ -43,12 +46,15 @@ class BookController extends AbstractController
     }
 
     #[Route('/book/{id}', name: 'app_book_details')]
-    public function details(Book $book, OMDBConnector $omdbConnector) {
+    public function details(Book $book, OMDBConnector $omdbConnector, BookRepository $bookRepository) {
 
         $movie = $omdbConnector->getInfosMovie($book->getTitle());
+        $borrowedBooks = $bookRepository->findBy(['isBorrowed' => true]);
+
         return $this->render('book/details.html.twig', [
             'book' => $book, 
-            'movie' => $movie
+            'movie' => $movie,
+            'borrowedBooks' => $borrowedBooks
         ]);
     }
 
@@ -61,6 +67,17 @@ class BookController extends AbstractController
 
         return $this->render('book/index.html.twig', ['books' => $books]);
     }
+
+
+    #[Route('/book/borrow/{id}', name: 'app_book_borrow')]
+    public function borrowBook(Book $book, BookRepository $bookRepository) {
+        $book->setIsBorrowed(true);
+
+        $bookRepository->add($book, true);
+
+        return new Response($book->getTitle());
+    }
+
 
     
 }
